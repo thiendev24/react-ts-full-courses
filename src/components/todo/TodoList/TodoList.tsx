@@ -1,5 +1,5 @@
 import Todo from "../Todo/Todo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { todos } from "../../../database/todoList";
 import { TodoType } from "../type/todoType";
 import { Button } from "react-bootstrap";

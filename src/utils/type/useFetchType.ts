@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
 export type AxiosResponseType<T> = {
-  data: T[];
+  data: T[] | Object;
 //   status: number;
 //   statusText: string;
 //   headers: H;

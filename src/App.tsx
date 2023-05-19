@@ -8,6 +8,8 @@ import HomePage from "./components/HomePage/HomePage";
 import UserTable from "./components/user/UserTable/UserTable";
 import Countdown from "./components/countdown/Countdown/Countdown";
 import Blog from "./components/blog/Blog/Blog";
+import BlogDetail from "./components/blog/BlogDetail/BlogDetail";
+import CreateNewBlog from "./components/blog/CreateNewBlog/CreateNewBlog";
 
 function App() {
   return (
@@ -15,11 +17,13 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/todos" element={<TodoList />} />
-        <Route path="/todos/add-todo" element={<AddTodo />} />
-        <Route path="/user" element={<UserTable />} />
-        <Route path="/countdown" element={<Countdown />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="todos" element={<TodoList />} />
+        <Route path="todos/add-todo" element={<AddTodo />} />
+        <Route path="user" element={<UserTable />} />
+        <Route path="countdown" element={<Countdown />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:id" element={<BlogDetail />} />
+        <Route path="blog/create-new-blog" element={<CreateNewBlog />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </>
