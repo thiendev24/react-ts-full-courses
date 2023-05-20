@@ -7,10 +7,9 @@ type BlogPostProps = {
 const BlogPost = ({ blog }: BlogPostProps) => {
   return (
     <>
-      <h3>Post</h3>
+      <h3>{blog.title}</h3>
       <div>
         <p>{blog.id}</p>
-        <p>{blog.title}</p>
         <p>{blog.body}</p>
       </div>
     </>

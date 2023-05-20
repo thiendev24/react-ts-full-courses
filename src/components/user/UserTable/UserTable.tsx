@@ -1,15 +1,30 @@
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import UserDataRow from "../UserDataRow/UserDataRow";
-import useFetch from "../../../utils/custom-hook/useFetch";
 import { UserType } from "../type/UserType";
+import UserService from "../../../utils/APIs/user_API/userServices";
 
 const UserTable = () => {
-  const url: string = "https://reqres.in/api/users?page=2";
-  const { res, isLoading, isError } = useFetch(url);
-  console.log(res);
+  const [users, setUser] = useState<UserType[]>([]);
 
-  //const users = res.data ? res.data : [];
-  const users: UserType[] = [];
+  useEffect(() => {
+    async function getUsers() {
+      try {
+        const res = await UserService.getUsers();
+        const data: UserType[] =
+          res && res.data && res.data.data ? res.data.data : [];
+
+        setUser(data);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log(error.message);
+        } else {
+          console.log(error);
+        }
+      }
+    }
+    getUsers();
+  }, []);
 
   return (
     <>
@@ -25,23 +40,13 @@ const UserTable = () => {
           </tr>
         </thead>
         <tbody>
-          {!isLoading && users.length > 0 ? (
+          {users.length > 0 ? (
             users.map((user) => {
               return <UserDataRow user={user} key={user.id} />;
             })
           ) : (
             <tr>
               <td colSpan={5}>Nothing to show!</td>
-            </tr>
-          )}
-          {isLoading && (
-            <tr>
-              <td colSpan={5}>Loading...</td>
-            </tr>
-          )}
-          {isError && (
-            <tr>
-              <td colSpan={5}>Something wrong!</td>
             </tr>
           )}
         </tbody>
