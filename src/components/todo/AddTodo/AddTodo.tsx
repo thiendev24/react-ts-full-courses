@@ -18,6 +18,7 @@ const AddTodo = () => {
         time: new Date().toISOString(),
       };
       console.log(newTodo);
+      (todoRef.current as HTMLInputElement).value = "";
     } else {
       alert(`Can't empty toto field!`);
     }
